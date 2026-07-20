@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Calcula la edad exacta de varias personas en una sola sesión." />
+    <title>Edad al instante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <h1 id="heroTitle">Calculadora<br /><em>de edadedds.</em></h1>
+        <p>Ingresa varias fechas de nacimiento y obtén la edad exacta de cada persona en una sola sesión.</p>
+
+        <div class="setup-card" id="setupCard">
+          <div class="setup-copy">
+            <span class="step-label">PASO 01</span>
+            <h2>Selecciona la cantidad</h2>
+            <p>Puedes calcular entre 1 y 20 personas.</p>
+          </div>
+          <form id="countForm" class="count-form" novalidate>
+            <div class="field count-field">
+              <label for="personCount">Cantidad de personas</label>
+              <input id="personCount" name="personCount" type="number" inputmode="numeric" min="1" max="20" step="1" placeholder="Ej. 3" autocomplete="off" aria-describedby="countError" />
+              <small class="error" id="countError" aria-live="polite"></small>
+            </div>
+            <button class="primary-button" type="submit">
+              Continuar <span aria-hidden="true">→</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="people-section is-hidden" id="peopleSection" aria-labelledby="peopleTitle">
+        <div class="section-heading">
+          <div>
+            <span class="step-label">PASO 02</span>
+            <h2 id="peopleTitle">Ingresa los datos</h2>
+          </div>
+          <button class="text-button" id="changeCount" type="button">Cambiar cantidad</button>
+        </div>
+        <form id="peopleForm" novalidate>
+          <div class="people-grid" id="peopleFields"></div>
+          <div class="form-actions">
+            <p><span aria-hidden="true">ⓘ</span> Usamos la hora local de tu zona para el cálculo.</p>
+            <button class="primary-button calculate-button" type="submit">
+              <span aria-hidden="true">✦</span> Calcular edades
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="results-section is-hidden" id="resultsSection" aria-labelledby="resultsTitle">
+        <div class="section-heading">
+          <div>
+            <span class="step-label">RESULTADOS</span>
+            <h2 id="resultsTitle">Edades calculadas</h2>
+          </div>
+          <button class="text-button" id="editPeople" type="button">Editar datos</button>
+        </div>
+        <div class="results-grid" id="resultsGrid" aria-live="polite"></div>
+        <button class="secondary-button" id="newCalculation" type="button">Nueva sesión</button>
+      </section>
+    </main>
+
+    <template id="personTemplate">
+      <article class="person-card">
+        <div class="person-number" aria-hidden="true"></div>
+        <div class="person-content">
+          <h3></h3>
+          <div class="person-inputs">
+            <div class="field">
+              <label></label>
+              <input class="name-input" type="text" maxlength="60" placeholder="Nombre completo" autocomplete="name" />
+              <small class="error" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label>Fecha de nacimiento</label>
+              <input class="birth-input" type="date" />
+              <small class="error" aria-live="polite"></small>
+            </div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
