@@ -1,4 +1,4 @@
-import { ageOf, isBirthday } from "./age.js";
+import { calculateAge, isBirthday } from "./age.js";
 import { $, dateValue, pad, safeText } from "./utils.js";
 
 export const elements = {
@@ -92,7 +92,7 @@ export function renderResults(people, current) {
   ];
 
   elements.resultsGrid.innerHTML = people.map((person, index) => {
-    const age = ageOf(person.birth, current);
+    const age = calculateAge(person.birth, current);
     const birthday = isBirthday(person.birth, current);
     const name = safeText(person.name);
     const birth = person.birth.toLocaleDateString("es-GT", {
@@ -120,7 +120,7 @@ export function renderResults(people, current) {
 export function updateResults(people, current) {
   elements.resultsGrid.querySelectorAll(".result-card").forEach((card) => {
     const person = people[card.dataset.index];
-    const age = ageOf(person.birth, current);
+    const age = calculateAge(person.birth, current);
 
     card.querySelectorAll("[data-value]").forEach((element) => {
       const key = element.dataset.value;
